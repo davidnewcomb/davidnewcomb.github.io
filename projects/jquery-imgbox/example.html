@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	<script src="jquery.imgbox.js"></script>
+
+	<!--
+	Development
+	<link rel="stylesheet" href="/local/bootstrap.css"/>
+	<script src="/local/jquery-3.3.1.min.js"></script>
+	<script src="/jquery-imgbox/jquery.imgbox.js"></script>
+	-->
+	
+<style id="fest_style">
+.fest_style {
+	background-color: white;
+	opacity: 0.2;
+	border: 4px dotted white;
+}
+</style>
+<style id="arcadia_style">
+.arcadia_style {
+	background-color: black;
+	opacity: 0.4;
+	border: 4px solid yellow;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>ImgBox</h1>
+
+<div>
+jQuery plugin that draws a box over an image. The box can be decorated with CSS.
+</div>
+
+<a href="https://github.com/davidnewcomb/jquery-imgbox">Project page</a>
+
+<hr/>
+
+	<div class="row">
+		<div class="col-sm-6 col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-body">Use x and y co-ordinates with width and height.</div>
+			</div>
+			<pre id="jack_me_img_code"></pre>
+			<pre id="jack_me_js_code"></pre>
+		</div>
+		<div class="col-sm-6 col-lg-6">
+			<img id="jack_me" class="img-responsive" data-x="525" data-y="50" data-w="300" data-h="350"
+			src="//cdn.bigsoft.co.uk/jquery-imgbox/img/jack_me.jpg"/>
+		</div>
+	</div>
+
+<hr/>
+
+	<div class="row">
+		<div class="col-sm-6 col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-body">Use coordinates x,y and x2,y2 with a css class to define the marker's look.</div>
+			</div>
+			<pre id="fest_img_code"></pre>
+			<pre id="fest_style_code"></pre>
+			<pre id="fest_js_code"></pre>
+		</div>
+		<div class="col-sm-6 col-lg-6">
+			<img id="fest" class="img-responsive" data-x="830" data-y="600" data-x2="1220" data-y2="1050"
+			src="//cdn.bigsoft.co.uk/jquery-imgbox/img/fest.jpg"/>
+		</div>
+	</div>
+
+<hr/>
+
+	<div class="row">
+		<div class="col-sm-4 col-lg-4">
+			<div class="panel panel-default">
+				<div class="panel-body">Wrap your image in anything like an anchor link.</div>
+			</div>
+			<pre id="family_example_img_code"></pre>
+			<pre id="family_js_code"></pre>
+		</div>
+		<div class="col-sm-8 col-lg-8">
+			<a href="README.md" id="family_example">
+				<img id="family" class="img-responsive" data-x="15" data-y="110" data-w="70" data-h="80"
+				src="//cdn.bigsoft.co.uk/jquery-imgbox/img/family.jpg"/>
+			</a>
+		</div>
+	</div>
+
+<hr/>
+
+	<div class="row">
+		<div class="col-sm-6 col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-body">Use with clickables, like alerts, to your <code>IMG</code> in the normal way.</div>
+			</div>
+			<pre id="party_jack_img_code"></pre>
+			<pre id="party_jack_js_code"></pre>
+		</div>
+		<div class="col-sm-6 col-lg-6">
+			<img id="party_jack" class="img-responsive" data-x="125" data-y="250" data-x2="400" data-y2="650" onclick="alert('David is Ace!');"
+			src="//cdn.bigsoft.co.uk/jquery-imgbox/img/party_jack.jpg"/>
+		</div>
+	</div>
+
+<hr/>
+
+	<div class="row">
+		<div class="col-sm-6 col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-body">Adjust either of the boxes. Click once to start drawing, click again to save.</div>
+			</div>
+			<pre id="arcadia_big_img_code"></pre>
+			<pre id="arcadia_small_img_code"></pre>
+			<pre id="arcadia_style_code"></pre>
+			<pre id="arcadia_js_code"></pre>
+		</div>
+		<div class="col-sm-6 col-lg-6">
+			<div class="row">
+				<div class="col-sm-8 col-lg-8">
+					<img id="arcadia_big" data-x="660" data-y="560" data-w="340" data-h="430" class="img-responsive"
+					src="//cdn.bigsoft.co.uk/jquery-imgbox/img/arcadia.jpg"/>
+				</div>
+				<div class="col-sm-4 col-lg-4">
+					<img id="arcadia_small" data-x="660" data-y="560" data-w="340" data-h="430" class="img-responsive"
+					src="//cdn.bigsoft.co.uk/jquery-imgbox/img/arcadia.jpg"/>
+				</div>
+			</div>
+			<div class="row">
+				<input id="arcadia_out" type="text" value="Redraw the box around Arcadia's eyes in both pictures" style="width:100%;"/>
+			</div>
+		</div>		
+	</div>
+
+</div>
+
+<script id="jack_me_js">
+$(document).ready(function() {
+	$('#jack_me').imgbox({
+		name: '#jack_me',
+		markStyle : {
+			'border' : '4px solid red'
+		}
+	});
+});
+</script>
+
+<script id="fest_js">
+$(document).ready(function() {
+	$('#fest').imgbox({
+		name: '#fest',
+		markClass : 'fest_style'
+	});
+});
+</script>
+
+<script id="family_js">
+$(document).ready(function() {
+	$('#family').imgbox({
+		name: '#family',
+		markStyle : {
+			'background-color' : 'white',
+			'opacity' : '0.2',
+			'border' : '4px dotted white'
+		}
+	});
+});
+</script>
+
+<script id="party_jack_js">
+$(document).ready(function() {
+	$('#party_jack').imgbox({
+		name: '#party_jack',
+		markStyle : {
+			'border' : '5px dashed cyan'
+		}
+	});
+});
+</script>
+
+<script id="arcadia_js">
+$(document).ready(function() {
+	
+	// For storing the callback objects
+	var arcadiaBigCallback = null;
+	var arcadiaSmallCallback = null;
+	
+	// Callback for drawing a new box 
+	function updateBig(data) {
+		$('#arcadia_out').val(JSON.stringify(data));
+		// data may be {x,y,w,h} or {x,y,x2,y2}
+		$('#arcadia_big').data(data);
+		// After we change the coordinates we can redraw the box
+		arcadiaBigCallback.redraw();
+	}
+
+	function updateSmall(data) {
+		$('#arcadia_out').val(JSON.stringify(data));
+		$('#arcadia_small').data(data);
+		arcadiaSmallCallback.redraw();
+	}
+	
+	// Define the large image
+	arcadiaBigCallback = $('#arcadia_big').imgbox({
+		name: '#arcadia_big',
+		// Look at your console log!
+		debug: true,
+		// Define style using class
+		markClass : 'arcadia_style',
+		// We want to be able to edit the box
+		command : 'edit',
+		// When we save a new box this function is called
+		saveBox : updateSmall
+	});
+	
+	arcadiaSmallCallback = $('#arcadia_small').imgbox({
+		name: '#arcadia_small',
+		debug: true,
+		// Define style of marker using css
+		markStyle : {
+			'border' : '2px solid blue'
+		},
+		// You can draw a new box on the smaller picture too!
+		command : 'edit',
+		saveBox : updateBig
+	});
+
+});
+
+</script>
+
+<script>
+
+// The Javascript below draws the example code on the screen
+// and is not related to the examples.
+
+function writeImgCode(id) {
+	var img = $('#' + id)[0].outerHTML;
+	var example = img.replace(/src=".*"/, 'src=".."').replace(/ /g, '\n   ').replace(/\t/g, ' ');
+	$('#' + id + '_img_code').text(example);
+}
+function writeStyleCode(id) {
+	var sty = $('#' + id + '_style')[0].innerHTML.replace(/	/g, '   ');
+	$('#' + id + '_style_code').text(sty);
+}
+function writeJsCode(id) {
+	var js = $('#' + id + '_js').html().replace(/	/g, '   ');
+	$('#' + id + '_js_code').text(js);
+}
+
+writeImgCode('jack_me');
+writeJsCode('jack_me');
+
+writeImgCode('fest');
+writeStyleCode('fest');
+
+writeJsCode('fest');
+writeImgCode('fest');
+
+writeImgCode('family_example');
+writeJsCode('family');
+
+writeImgCode('party_jack');
+writeJsCode('party_jack');
+
+writeImgCode('arcadia_big');
+writeImgCode('arcadia_small');
+writeStyleCode('arcadia');
+writeJsCode('arcadia');
+
+</script>
+
+
+
+</body>
+</html>
+
