@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="img/family.jpg"/><link rel="preload" as="image" href="img/frightfest.jpg"/><link rel="preload" as="image" href="img/quantel.jpg"/><link rel="preload" as="image" href="img/youth_hosteling.jpg"/><link rel="preload" as="image" href="img/jack_pub.jpg"/><link rel="stylesheet" href="_next/static/css/b2959a8b7f95427a.css" crossorigin="" data-precedence="next"/><link rel="stylesheet" href="_next/static/css/ddab3cfc29ab7e60.css" crossorigin="" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="_next/static/chunks/webpack-e48c78e1cf616d25.js" crossorigin=""/><script src="_next/static/chunks/fd9d1056-534a3af521b04580.js" async="" crossorigin=""></script><script src="_next/static/chunks/69-21befd2d879acde6.js" async="" crossorigin=""></script><script src="_next/static/chunks/main-app-6a3ab6df6ce464fa.js" async="" crossorigin=""></script><script src="_next/static/chunks/app/page-3ac6060d4f35eaac.js" async=""></script><title>React-ImgBox</title><meta name="description" content="Draws a box over an image"/><script src="_next/static/chunks/polyfills-c67a75d1b6f99dc8.js" crossorigin="" noModule=""></script></head><body><div style="width:75%;margin:auto"><div><h1>React-ImgBox</h1><small>React version of <a href="https://github.com/davidnewcomb/jquery-imgbox">jQuery-Imgbox</a></small></div><a href="https://github.com/davidnewcomb/react-imgbox">Project page.</a><hr/><div class="row"><div class="col-sm-6 col-lg-6"><div class="panel panel-default"><div class="panel-body">Use x and y co-ordinates with width and height.</div></div><pre>
+
+&lt;ImgBox
+  id=&quot;family&quot; className=&quot;img-fluid&quot; name=&quot;family&quot;
+  src=&quot;img/family.jpg&quot;
+
+  x=&quot;47&quot; y=&quot;288&quot; w=&quot;380&quot; h=&quot;523&quot;
+  markStyle={{ &#x27;border&#x27;: &#x27;4px solid red&#x27; }}
+/&gt;
+</pre></div><div class="col-sm-6 col-lg-6"><div style="position:relative"><img id="family" class="img-fluid" src="img/family.jpg" alt=""/></div></div></div><hr/><div class="row"><div class="col-sm-6 col-lg-6"><div class="panel panel-default"><div class="panel-body">Use coordinates x,y and x2,y2 with a css class to define the marker&amp;aposs look.</div></div><pre>
+
+&lt;ImgBox
+  id=&quot;frightfest&quot; className=&quot;img-fluid&quot;
+  src=&quot;img/frightfest.jpg&quot;
+
+  x=&quot;483&quot; y=&quot;405&quot; x2=&quot;932&quot; y2=&quot;1038&quot; markClass=&quot;frightfest_style&quot;
+/&gt;
+</pre></div><div class="col-sm-6 col-lg-6"><div style="position:relative"><img id="frightfest" class="img-fluid" src="img/frightfest.jpg" alt=""/></div></div></div><hr/><div class="row"><div class="col-sm-4 col-lg-4"><div class="panel panel-default"><div class="panel-body">Wrap your image in anything like an anchor link.</div></div><pre>
+
+const markStyle = {
+  backgroundColor: &#x27;white&#x27;,
+  opacity: &#x27;0.2&#x27;,
+  border: &#x27;4px dotted white&#x27;
+}
+</pre><pre>
+
+&lt;a href=&quot;README.md&quot; id=&quot;quantel_example&quot;&gt;
+  &lt;ImgBox
+    id=&quot;quantel&quot; className=&quot;img-fluid&quot;
+    src=&quot;img/quantel.jpg&quot;
+
+    x=&quot;1395&quot; y=&quot;246&quot; w=&quot;638&quot; h=&quot;763&quot; markStyle={markStyle}
+  /&gt;
+&lt;/a&gt;
+</pre></div><div class="col-sm-8 col-lg-8"><a href="README.md" id="quantel_example" target="_new"><div style="position:relative"><img id="quantel" class="img-fluid" src="img/quantel.jpg" alt=""/></div></a></div></div><hr/><div class="row"><div class="col-sm-6 col-lg-6"><div class="panel panel-default"><div class="panel-body">Use with clickables, like alerts, to your <code>IMG</code> in the normal way.</div></div><pre>
+
+const markStyle = {
+  border: &#x27;5px dashed cyan&#x27;
+}
+</pre><pre>
+
+const doClick = (e) =&gt; {
+  alert(&#x27;David is Ace!&#x27;)
+}
+</pre><pre>
+
+&lt;ImgBox
+  id=&quot;youth_hosteling&quot; className=&quot;img-fluid&quot;
+  src=&quot;img/youth_hosteling.jpg&quot;
+
+  x=&quot;298&quot; y=&quot;455&quot; x2=&quot;682&quot; y2=&quot;900&quot; markStyle={markStyle}
+  onClick={doClick}
+/&gt;
+</pre></div><div class="col-sm-6 col-lg-6"><div style="position:relative"><img id="youth_hosteling" class="img-fluid" src="img/youth_hosteling.jpg" alt=""/></div></div></div><hr/><div class="row"><div class="col-sm-6 col-lg-6"><div class="panel panel-default"><div class="panel-body">Adjust either of the boxes. Click once to start drawing, click again to save.<br/>If your initial point is wrong, you can move the pointer up and right to move the inital point.</div></div><pre>.jack_pub_style {
+  background-color: black;
+  opacity: 0.4;
+  border: 4px solid yellow;
+}
+</pre><pre>
+
+const [myCoords, setMyCoords] =
+  useState({x:1050, y:688, x2:1732, y2:1563, w:682, h:875})
+const [myCoordString, setMyCoordString] =
+  useState(&#x27;&#x27;)
+
+const saveMyCoords = (coords) =&gt; {
+  setMyCoords(coords)
+  setMyCoordString(JSON.stringify(myCoords))
+}
+</pre><pre>
+
+&lt;ImgBox
+  id=&quot;jack_pub_big&quot; {...myCoords} className=&quot;img-fluid&quot;
+  src=&quot;img/jack_pub.jpg&quot;
+  defaultSettings={{
+    edit: true,
+    saveBox: saveMyCoords,
+    markClass: &#x27;jack_pub_style&#x27;
+  }}
+/&gt;
+</pre><pre>
+
+&lt;ImgBox
+  id=&quot;jack_pub_small&quot; {...myCoords} className=&quot;img-fluid&quot;
+  edit={true} saveBox={saveMyCoords}
+  markStyle={{ &#x27;border&#x27;: &#x27;2px solid blue&#x27; }}
+  src=&quot;img/jack_pub.jpg&quot;
+/&gt;
+</pre><pre>
+
+&lt;input
+  id=&quot;jack_pub_out&quot; type=&quot;text&quot; placeholder=&quot;Redraw the box around the barman in both pictures&quot;
+  readOnly={true} style={{ width: &#x27;100%&#x27; }}
+  value={myCoordString}
+/&gt;
+</pre></div><div class="col-sm-6 col-lg-6"><div class="row"><div class="col-sm-8 col-lg-8"><div style="position:relative"><img id="jack_pub_big" class="img-fluid" src="img/jack_pub.jpg" alt=""/></div></div><div class="col-sm-4 col-lg-4"><div style="position:relative"><img id="jack_pub_small" class="img-fluid" src="img/jack_pub.jpg" alt=""/></div></div></div><div class="row"><input type="text" placeholder="Redraw the box around the barman in both pictures" readOnly="" style="width:100%" value="{&quot;x&quot;:1050,&quot;y&quot;:688,&quot;x2&quot;:1732,&quot;y2&quot;:1563,&quot;w&quot;:682,&quot;h&quot;:875}"/><br/><input type="text" placeholder="Redraw the box around the barman in both pictures" readOnly="" style="width:100%" value="{x:1050, y:688, x2:1732, y2:1563, w:682, h:875}"/><div> </div><input type="text" placeholder="Redraw the box around the barman in both pictures" readOnly="" style="width:100%" value="{x:1050, y:688, w:682, h:875}"/><br/><input type="text" placeholder="Redraw the box around the barman in both pictures" readOnly="" style="width:100%" value="x=&quot;1050&quot; y=&quot;688&quot; w=&quot;682&quot; h=&quot;875&quot;"/><div> </div><input type="text" placeholder="Redraw the box around the barman in both pictures" readOnly="" style="width:100%" value="{x:1050, y:688, x2:1732, y2:1563}"/><br/><input type="text" placeholder="Redraw the box around the barman in both pictures" readOnly="" style="width:100%" value="x=&quot;1050&quot; y=&quot;688&quot; x2=&quot;1732&quot; y2=&quot;1563&quot;"/></div></div></div><hr/></div><script src="_next/static/chunks/webpack-e48c78e1cf616d25.js" crossorigin="" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0]);self.__next_f.push([2,null])</script><script>self.__next_f.push([1,"1:HL[\"_next/static/css/b2959a8b7f95427a.css\",\"style\",{\"crossOrigin\":\"\"}]\n2:HL[\"_next/static/css/ddab3cfc29ab7e60.css\",\"style\",{\"crossOrigin\":\"\"}]\n0:\"$L3\"\n"])</script><script>self.__next_f.push([1,"4:I[7690,[],\"\"]\n6:I[7831,[],\"\"]\n7:I[8,[\"931\",\"static/chunks/app/page-3ac6060d4f35eaac.js\"],\"\"]\n8:I[5613,[],\"\"]\n9:I[1778,[],\"\"]\nb:I[8955,[],\"\"]\nc:[]\n"])</script><script>self.__next_f.push([1,"3:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"_next/static/css/b2959a8b7f95427a.css\",\"precedence\":\"next\",\"crossOrigin\":\"\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"_next/static/css/ddab3cfc29ab7e60.css\",\"precedence\":\"next\",\"crossOrigin\":\"\"}]],[\"$\",\"$L4\",null,{\"buildId\":\"e-S0ttAnZQ9lPZq5S8Vkm\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/\",\"initialTree\":[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",true],\"initialSeedData\":[\"\",{\"children\":[\"__PAGE__\",{},[\"$L5\",[\"$\",\"$L6\",null,{\"propsForComponent\":{\"params\":{}},\"Component\":\"$7\",\"isStaticGeneration\":true}],null]]},[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"children\":[\"$\",\"$L8\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"loadingScripts\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L9\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":null}]}]}],null]],\"initialHead\":[false,\"$La\"],\"globalErrorComponent\":\"$b\",\"missingSlots\":\"$Wc\"}]]\n"])</script><script>self.__next_f.push([1,"a:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"React-ImgBox\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Draws a box over an image\"}]]\n5:null\n"])</script><script>self.__next_f.push([1,""])</script></body></html>
